@@ -1,0 +1,117 @@
+repositories:
+  src/backward_ros:
+    type: git
+    url: https://github.com/pal-robotics/backward_ros.git
+    version: kinetic-devel
+  src/ddynamic_reconfigure_python:
+    type: git
+    url: https://github.com/pal-robotics/ddynamic_reconfigure_python
+    version: master
+  src/dynamic_introspection:
+    type: git
+    url: https://github.com/pal-robotics/dynamic_introspection
+    version: kinetic-devel
+  src/gazebo_ros_pkgs:
+    type: git
+    url: https://github.com/pal-robotics-forks/gazebo_ros_pkgs.git
+    version: melodic-devel
+  src/head_action:
+    type: git
+    url: https://github.com/pal-robotics/head_action.git
+    version: indigo-devel
+  src/hey5_description:
+    type: git
+    url: https://github.com/pal-robotics/hey5_description.git
+    version: master
+  src/humanoid_msgs:
+    type: git
+    url: https://github.com/ahornung/humanoid_msgs.git
+    version: master
+  src/pal_gazebo_plugins:
+    type: git
+    url: https://github.com/pal-robotics/pal_gazebo_plugins.git
+    version: melodic-devel
+  src/pal_gazebo_worlds:
+    type: git
+    url: https://github.com/pal-robotics/pal_gazebo_worlds.git
+    version: kinetic-devel
+  src/pal_gripper:
+    type: git
+    url: https://github.com/gentlebots/pal_gripper.git
+    version: kinetic-devel
+  src/pal_hardware_gazebo:
+    type: git
+    url: https://github.com/pal-robotics/pal_hardware_gazebo.git
+    version: melodic-devel
+  src/pal_hardware_interfaces:
+    type: git
+    url: https://github.com/pal-robotics/pal_hardware_interfaces.git
+    version: indigo-devel
+  src/pal_msgs:
+    type: git
+    url: https://github.com/pal-robotics/pal_msgs.git
+    version: indigo-devel
+  src/pal_python:
+    type: git
+    url: https://github.com/pal-robotics/pal_python.git
+    version: indigo-devel
+  src/play_motion:
+    type: git
+    url: https://github.com/pal-robotics/play_motion.git
+    version: kinetic-devel
+  src/pal_statistics:
+    type: git
+    url: https://github.com/pal-robotics/pal_statistics
+    version: kinetic-devel
+  src/pal_wsg_gripper:
+    type: git
+    url: https://github.com/pal-robotics/pal_wsg_gripper
+    version: indigo-devel
+  src/pmb2_robot:
+    type: git
+    url: https://github.com/gentlebots/pmb2_robot.git
+    version: kinetic-devel
+  src/pmb2_simulation:
+    type: git
+    url: https://github.com/pal-robotics/pmb2_simulation.git
+    version: indigo-devel
+  src/robot_pose:
+    type: git
+    url: https://github.com/pal-robotics/robot_pose
+    version: kinetic-devel
+  src/roboticsgroup_gazebo_plugins:
+    type: git
+    url: https://github.com/pal-robotics-forks/roboticsgroup_gazebo_plugins.git
+    version: kinetic-devel
+  src/ros_control:
+    type: git
+    url: https://github.com/pal-robotics-forks/ros_control.git
+    version: kinetic-devel
+  src/ros_controllers:
+    type: git
+    url: https://github.com/pal-robotics-forks/ros_controllers.git
+    version: kinetic-devel
+  src/tf_lookup:
+    type: git
+    url: https://github.com/pal-robotics/tf_lookup.git
+    version: master
+  src/tiago_description_calibration:
+    type: git
+    url: https://github.com/pal-robotics/tiago_description_calibration.git
+    version: indigo-devel
+  src/tiago_robot:
+    type: git
+    url: https://github.com/pal-robotics/tiago_robot.git
+    version: kinetic-devel
+  src/tiago_simulation:
+    type: git
+    url: https://github.com/pal-robotics/tiago_simulation.git
+    version: kinetic-devel
+  src/at_home_2021_tmc_task_evaluators:
+    type: git
+    url: https://github.com/gentlebots/at_home_2021_tmc_task_evaluators.git
+    version: main
+  src/gb_robots:
+    type: git
+    url: https://github.com/gentlebots/gb_robots.git
+    version: main
