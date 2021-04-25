@@ -115,3 +115,11 @@ repositories:
     type: git
     url: https://github.com/gentlebots/gb_robots.git
     version: main
+  src/tmc_wrs_gazebo:
+    type: git
+    url: https://github.com/hsr-project/tmc_wrs_gazebo.git
+    version: master
+  src/tmc_gazebo_task_evaluators:
+    type: git
+    url: https://github.com/gentlebots/tmc_gazebo_task_evaluators
+    version: master
