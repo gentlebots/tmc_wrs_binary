@@ -30,7 +30,7 @@ SHELL ["/bin/bash", "-c"]
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && \
+RUN apt-get update --fix-missing && \
     apt-get install -y curl apt-transport-https python-pip && \
     apt-get clean
 
@@ -68,6 +68,7 @@ RUN apt-get update && \
     ros-melodic-ros-controllers \
     ros-melodic-pcl-ros \
     ros-melodic-tf-conversions \
+    ros-melodic-four-wheel-steering-msgs \
     ros-melodic-moveit-ros-perception && \
     pip install -U --ignore-installed pyassimp supervisor supervisor_twiddler && \
     apt-get autoremove -y && \
