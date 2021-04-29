@@ -123,7 +123,7 @@ repositories:
     type: git
     url: https://github.com/gentlebots/tmc_gazebo_task_evaluators
     version: master
-  src/gazebo-pkgs
+  src/gazebo-pkgs:
     type: git
     url: https://github.com/JenniferBuehler/gazebo-pkgs.git
     version: master
