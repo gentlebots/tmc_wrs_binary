@@ -101,7 +101,7 @@ repositories:
     version: indigo-devel
   src/tiago_robot:
     type: git
-    url: https://github.com/pal-robotics/tiago_robot.git
+    url: https://github.com/gentlebots/tiago_robot
     version: kinetic-devel
   src/tiago_simulation:
     type: git
@@ -122,4 +122,12 @@ repositories:
   src/tmc_gazebo_task_evaluators:
     type: git
     url: https://github.com/gentlebots/tmc_gazebo_task_evaluators
+    version: master
+  src/:gazebo-pkgs
+    type: git
+    url: https://github.com/JenniferBuehler/gazebo-pkgs.git
+    version: master
+  src/general-message-pkgs:
+    type: git
+    url: https://github.com/JenniferBuehler/general-message-pkgs.git
     version: master
