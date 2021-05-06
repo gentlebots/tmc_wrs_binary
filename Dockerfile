@@ -80,6 +80,112 @@ RUN cd /wrs_ws/src && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_init_work
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/ros/$ROS_DISTRO -DCATKIN_ENABLE_TESTING=0
 
+
+
+
+# Install ROS2 eloquent from source
+
+## Set locale
+
+RUN locale && \
+apt update && apt install locales -y && \
+locale-gen en_US en_US.UTF-8 && \
+update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 && \
+export LANG=en_US.UTF-8 && \
+locale
+
+## Add the ROS2 apt repository
+
+RUN apt update && apt install curl gnupg2 lsb-release -y && \
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - && \
+sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
+
+## Install development tools and ROS tools
+
+RUN apt update && sudo apt install -y \
+  build-essential \
+  cmake \
+  git \
+  python3-colcon-common-extensions \
+  python3-pip \
+  python-rosdep \
+  python3-vcstool \
+  wget
+# install some pip packages needed for testing
+RUN python3 -m pip install -U \
+  argcomplete \
+  flake8 \
+  flake8-blind-except \
+  flake8-builtins \
+  flake8-class-newline \
+  flake8-comprehensions \
+  flake8-deprecated \
+  flake8-docstrings \
+  flake8-import-order \
+  flake8-quotes \
+  pytest-repeat \
+  pytest-rerunfailures \
+  pytest \
+  pytest-cov \
+  pytest-runner \
+  setuptools
+# install Fast-RTPS dependencies
+RUN apt install --no-install-recommends -y \
+  libasio-dev \
+  libtinyxml2-dev
+# install Cyclone DDS dependencies
+RUN apt install --no-install-recommends -y \
+  libcunit1-dev
+
+RUN rosdep update
+
+## Create Workspace and import the packages and dependencies
+
+RUN mkdir -p /eloquent_ws/src && \
+cd /eloquent_ws && \
+wget https://raw.githubusercontent.com/ros2/ros2/eloquent/ros2.repos && \
+vcs import src < ros2.repos
+
+## Replace the ros1_bridge by own dedicated bridges
+
+RUN rm -rf /eloquent_ws/src/ros2/ros1_bridge
+
+RUN cd /eloquent_ws/src/ros2 && \
+git clone -b dedicated_bridges_eloquent --recursive https://github.com/IntelligentRoboticsLabs/ros1_bridge.git
+
+USER root
+
+RUN cd /eloquent_ws && \
+rosdep install --from-paths src --ignore-src --rosdistro eloquent -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
+
+### Install tf2_msgs
+
+RUN apt-get install ros-melodic-tf2-msgs 
+
+
+# Compile the ROS2 Workspace
+
+RUN cd /eloquent_ws && \
+colcon build --symlink-install --packages-skip ros1_bridge
+
+RUN mkdir -p /eloquent_moveit_ws/src && \
+cd /eloquent_moveit_ws && \
+wget https://raw.githubusercontent.com/gentlebots/tmc_wrs_binary/ros2/moveit_msgs.repos && \
+vcs import src < moveit_msgs.repos
+
+RUN source /eloquent_ws/install/setup.bash && \
+cd /eloquent_moveit_ws && \
+colcon build --symlink-install
+
+# Source ROS1/ROS2 Environment and compile ros1_bridge
+
+##ENV MAKEFLAGS -j1
+
+RUN source /opt/ros/melodic/setup.bash && \
+source /eloquent_moveit_ws/install/setup.bash && \
+cd /eloquent_ws && \
+colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure
+
 ADD entrypoint-wrs.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
