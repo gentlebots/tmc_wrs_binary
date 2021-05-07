@@ -110,7 +110,8 @@ RUN apt update && sudo apt install -y \
   python3-pip \
   python-rosdep \
   python3-vcstool \
-  wget
+  wget \
+  screen
 # install some pip packages needed for testing
 RUN python3 -m pip install -U \
   argcomplete \
