@@ -107,6 +107,10 @@ repositories:
     type: git
     url: https://github.com/pal-robotics/tiago_simulation.git
     version: kinetic-devel
+  src/tiago_moveit_config:
+    type: git
+    url: https://github.com/pal-robotics/tiago_moveit_config.git
+    version: kinetic-devel
   src/at_home_2021_tmc_task_evaluators:
     type: git
     url: https://github.com/gentlebots/at_home_2021_tmc_task_evaluators.git
@@ -131,3 +135,4 @@ repositories:
     type: git
     url: https://github.com/JenniferBuehler/general-message-pkgs.git
     version: master
+  
