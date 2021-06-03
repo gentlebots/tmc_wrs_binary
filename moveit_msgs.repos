@@ -13,5 +13,5 @@ repositories:
     version: ros2
   vision_msgs:
     type: git
-    url: https://github.com/ros-perception/vision_msgs.git
+    url: https://github.com/jginesclavero/vision_msgs.git
     version: ros2
