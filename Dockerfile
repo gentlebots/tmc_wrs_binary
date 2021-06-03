@@ -59,6 +59,7 @@ RUN apt-get update && \
     ros-melodic-joint-trajectory-controller \
     ros-melodic-move-base \
     ros-melodic-map-server \
+    ros-melodic-vision-msgs \
     ros-melodic-xacro \
     ros-melodic-joint-state-publisher \
     liburdfdom-tools \
@@ -81,9 +82,6 @@ ADD gentlebots_startup.sh /wrs_ws/src/gentlebots_startup.sh
 RUN cd /wrs_ws/src && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_init_workspace || true
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/ros/$ROS_DISTRO -DCATKIN_ENABLE_TESTING=0
-
-
-
 
 # Install ROS2 eloquent from source
 
