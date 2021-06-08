@@ -70,7 +70,11 @@ RUN apt-get update && \
     ros-melodic-pcl-ros \
     ros-melodic-tf-conversions \
     ros-melodic-four-wheel-steering-msgs \
+    ros-melodic-realtime-tools \
+    ros-melodic-navigation \
+    ros-melodic-navigation* \
     ros-melodic-moveit-ros-perception && \
+ 
     pip install -U --ignore-installed pyassimp supervisor supervisor_twiddler && \
     apt-get autoremove -y && \
     apt-get clean
