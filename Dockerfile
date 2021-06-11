@@ -29,7 +29,8 @@ FROM ros:melodic
 SHELL ["/bin/bash", "-c"]
 
 ENV DEBIAN_FRONTEND noninteractive
-
+RUN apt-get update; apt-get install curl
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update --fix-missing && \
     apt-get install -y curl apt-transport-https python-pip && \
     apt-get clean
@@ -44,15 +45,11 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     ros-melodic-gazebo-ros ros-melodic-gazebo-plugins ros-melodic-gazebo-ros-control libgazebo9-dev libignition-transport4-dev libpoco-dev python-scipy libgsl-dev \
     ros-melodic-dwa-local-planner \
+    ros-melodic-base-local-planner \
     ros-melodic-eigen-conversions \
     ros-melodic-robot-state-publisher \
     ros-melodic-moveit-core \
-    ros-melodic-moveit-plugins \
-    ros-melodic-moveit-planners-ompl \
-    ros-melodic-moveit-ros-planning \
-    ros-melodic-moveit-ros-move-group \
-    ros-melodic-moveit-ros-manipulation \
-    ros-melodic-moveit-simple-controller-manager \
+    ros-melodic-moveit-* \
     ros-melodic-urdfdom-py \
     ros-melodic-roslint \
     ros-melodic-joint-state-controller \
@@ -61,6 +58,11 @@ RUN apt-get update && \
     ros-melodic-map-server \
     ros-melodic-vision-msgs \
     ros-melodic-xacro \
+    ros-melodic-control-toolbox \
+    ros-melodic-four-wheel-steering-msgs \
+    ros-melodic-perception-pcl \
+    ros-melodic-realtime-tools \
+    ros-melodic-urdf-geometry-parser \
     ros-melodic-joint-state-publisher \
     liburdfdom-tools \
     ros-melodic-image-proc \
@@ -74,7 +76,6 @@ RUN apt-get update && \
     ros-melodic-navigation \
     ros-melodic-navigation* \
     ros-melodic-moveit-ros-perception && \
- 
     pip install -U --ignore-installed pyassimp supervisor supervisor_twiddler && \
     apt-get autoremove -y && \
     apt-get clean
@@ -87,6 +88,15 @@ RUN cd /wrs_ws/src && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_init_work
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/ros/$ROS_DISTRO -DCATKIN_ENABLE_TESTING=0
 
+# Install DOPE deps
+RUN python -m pip install -U \
+  pyrr==0.9.2 \
+  torch==0.4.0 \
+  numpy==1.14.2 \
+  scipy==1.1.0 \
+  opencv_python==3.4.1.15 \
+  Pillow==5.3.0 \
+  torchvision==0.2.1
 # Install ROS2 eloquent from source
 
 ## Set locale
@@ -116,6 +126,7 @@ RUN apt update && sudo apt install -y \
   python3-vcstool \
   wget \
   screen
+  
 # install some pip packages needed for testing
 RUN python3 -m pip install -U \
   argcomplete \

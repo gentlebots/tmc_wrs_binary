@@ -28,7 +28,7 @@
 
 set -e
 
-IMAGE_NAME="ghcr.io/gentlebots/tmc_wrs_docker_ros2"
+IMAGE_NAME="ghcr.io/gentlebots/tmc_wrs_docker_rc_melodic_and_bridges"
 
 BUILD_DATE=`date +%Y%m%d`
 BUILD_ARGS=""

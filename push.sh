@@ -27,6 +27,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 # to github
-docker push ghcr.io/gentlebots/tmc_wrs_docker_ros2:latest
-docker push ghcr.io/gentlebots/tmc_wrs_docker_ros2:nvidia
-docker push ghcr.io/gentlebots/tmc_wrs_docker_ros2:forclass
+docker push ghcr.io/gentlebots/tmc_wrs_docker_rc_melodic_and_bridges:latest
+docker push ghcr.io/gentlebots/tmc_wrs_docker_rc_melodic_and_bridges:nvidia
+docker push ghcr.io/gentlebots/tmc_wrs_docker_rc_melodic_and_bridges:forclass
