@@ -88,7 +88,7 @@ RUN cd /wrs_ws/src && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_init_work
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y
 RUN cd /wrs_ws && source /opt/ros/$ROS_DISTRO/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/ros/$ROS_DISTRO -DCATKIN_ENABLE_TESTING=0
 
-# Install DOPE deps
+# Install DOPE & Moveit deps
 RUN python -m pip install -U \
   pyrr==0.9.2 \
   torch==0.4.0 \
@@ -96,7 +96,8 @@ RUN python -m pip install -U \
   scipy==1.1.0 \
   opencv_python==3.4.1.15 \
   Pillow==5.3.0 \
-  torchvision==0.2.1
+  torchvision==0.2.1 \
+  pyassimp==4.1.3
 # Install ROS2 eloquent from source
 
 ## Set locale
